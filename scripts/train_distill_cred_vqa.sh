@@ -40,6 +40,7 @@ torchrun --standalone \
     --image_resolution "low" \
     --projector_config_path "./config/projector_config_emo.json" \
     --projector_lr 5e-5 \
+    --sigreg_weight 0.5 \
     --report_to None
 
 
@@ -50,7 +51,7 @@ SUBSETS=(
   "OK-VQA" "A-OKVQA" "DocVQA" "InfographicsVQA" "ChartQA" "Visual7W"
   "ScienceQA" "VizWiz" "GQA" "TextVQA"
 )
-python eval_mmeb_2.py \
+python eval_mmeb.py \
     --model_name training/FastVLM-0.5B_cred_vqa/checkpoint-final \
     --encode_output_path './MMEB-eval_outputs/FastVLM-0.5B_cred_vqa/' \
     --lora True --lora_r 64 --lora_alpha 64 \
