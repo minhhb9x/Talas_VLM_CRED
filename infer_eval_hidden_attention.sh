@@ -11,9 +11,9 @@ INFER_SCRIPT="infer_eval_hidden_attention.py"
 
 # MODEL="raghavlite/B3_Qwen2_2B"
 # MODEL="training/FastVLM-0.5B_cls_1.0_talas/checkpoint-epoch-0"
-# MODEL="training/FastVLM-0.5B_base_16_eos_cls/checkpoint-epoch-0"
+MODEL="training/FastVLM-0.5B_base_16_eos_cls/checkpoint-epoch-0"
 # MODEL="apple/FastVLM-0.5B"
-MODEL="llava-hf/llava-onevision-qwen2-0.5b-ov-hf"
+# MODEL="llava-hf/llava-onevision-qwen2-0.5b-ov-hf"
 export CUDA_VISIBLE_DEVICES=1
 python $INFER_SCRIPT \
     --model_name $MODEL \
@@ -21,7 +21,7 @@ python $INFER_SCRIPT \
     --lora_r 64 \
     --lora_alpha 64 \
     --pooling eos \
-    --model_backbone llava_onevision \
+    --model_backbone llava_qwen2 \
     --normalize True \
     --bf16 \
     --dataset_name "TIGER-Lab/MMEB-eval" \
@@ -29,8 +29,8 @@ python $INFER_SCRIPT \
     --dataset_split "test" \
     --image_dir "eval_images/" \
     --tgt_prefix_mod \
-    --encode_output_path "infer/OV-0.5B" \
-    --image_resolution "tiny" \
-    --per_device_eval_batch_size 4 \
+    --encode_output_path "infer/FastVLM-0.5B_base_16_eos_cls" \
+    --image_resolution "low" \
+    --per_device_eval_batch_size 1 \
     --load_pretrained_lora True \
     --report_to None
